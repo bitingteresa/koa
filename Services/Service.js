@@ -31,6 +31,12 @@ export async function deleteUser (id) {
   return getAllUsers();
 }
 
+export function saveUser (ctx) {
+  let user = new User(ctx);
+  user.save();
+  return user.get();
+}
+
 // ADDRESS(ES)
 export function getAllAddresses () {
   return Address.find();

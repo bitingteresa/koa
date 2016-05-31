@@ -3,7 +3,7 @@ import * as Services from '../Services/Service';
 
 const UserRouter = new Router();
 
-// GET All Users
+// GET all users
 UserRouter.get('/users', async function () {
   try {
     const result = await Services.getAllUsers();
@@ -15,7 +15,7 @@ UserRouter.get('/users', async function () {
   }
 });
 
-// GET a single User
+// GET a single user
 UserRouter.get('/users/:userId', async function () {
   const { userId } = this.params;
 
@@ -47,7 +47,7 @@ UserRouter.patch('/users/:userId', async function () {
   }
 });
 
-// DELETE a single User
+// DELETE a single user
 // TODO: need to handle address delete base on count
 UserRouter.del('/users/:userId', async function () {
   const { userId } = this.params;
@@ -60,6 +60,26 @@ UserRouter.del('/users/:userId', async function () {
   } catch (error) {
     this.status = 400;
     this.body = 'There was a problem removing user';
+  }
+});
+
+// POST a single user
+UserRouter.post('/users', async function () {
+  try {
+    const address = await Services.saveAddress(this.request.body.address);
+
+    this.request.body.address = address._id;
+
+    const result = await Services.saveUser(this.request.body);
+
+    this.body = await result;
+    this.response.message = 'User was created Successfully'
+  } catch (error) {
+    this.status = typeof error.status === 'number' ? error.status : 400;
+    this.body = error instanceof Error ? {
+      status: this.status,
+      message: error.message
+    } : 'There was a problem creating user';
   }
 });
 
