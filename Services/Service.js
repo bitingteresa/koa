@@ -15,3 +15,13 @@ export function getAllUsers () {
 export function getUser (id) {
   return User.findById(id);
 }
+
+export function updateUser (id, ctx) {
+  let user = new User({_id: ObjectId(id)});
+  user.set(ctx);
+  user.save();
+
+  // TODO: Need to copy the whole model on the CS to pass in as ctx
+
+  return user.get();
+}
