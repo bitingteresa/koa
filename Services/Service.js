@@ -30,3 +30,8 @@ export async function deleteUser (id) {
   await User.remove({_id: ObjectId(id)});
   return getAllUsers();
 }
+
+// ADDRESS(ES)
+export function getAllAddresses () {
+  return Address.find();
+}
