@@ -15,4 +15,18 @@ UserRouter.get('/users', async function () {
   }
 });
 
+// GET a single User
+UserRouter.get('/users/:userId', async function () {
+  const { userId } = this.params;
+
+  try {
+    const result = await Services.getUser(userId);
+
+    this.body = result;
+  } catch (error) {
+    this.status = 400;
+    this.body = 'Not a valid user'
+  }
+});
+
 export default UserRouter;

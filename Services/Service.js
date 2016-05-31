@@ -11,3 +11,7 @@ console.log(`Connected to DB ${MongoUrl}`);
 export function getAllUsers () {
   return User.sort('created_at', -1).find();
 }
+
+export function getUser (id) {
+  return User.findById(id);
+}
