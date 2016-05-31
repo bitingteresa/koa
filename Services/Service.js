@@ -39,3 +39,8 @@ export function getAllAddresses () {
 export function getAddress (id) {
   return Address.findById(id);
 }
+
+export async function deleteAddress (id) {
+  await Address.remove({_id: ObjectId(id)});
+  return getAllAddresses();
+}

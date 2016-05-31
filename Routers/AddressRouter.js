@@ -29,4 +29,19 @@ AddressRouter.get('/addresses/:addressId', async function () {
   }
 });
 
+// DELETE a single address for dev use
+AddressRouter.del('/addresses/:addressId', async function () {
+  const { addressId } = this.params;
+
+  try {
+    const result = await Services.deleteAddress(addressId);
+
+    this.body = result;
+    this.response.message = 'Address was removed'
+  } catch (error) {
+    this.status = 400;
+    this.body = 'There was a problem removing address';
+  }
+});
+
 export default AddressRouter;
