@@ -44,3 +44,9 @@ export async function deleteAddress (id) {
   await Address.remove({_id: ObjectId(id)});
   return getAllAddresses();
 }
+
+export async function saveAddress (ctx) {
+  let address = new Address(ctx);
+  await address.save();
+  return address.get();
+}
