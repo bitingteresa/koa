@@ -35,3 +35,7 @@ export async function deleteUser (id) {
 export function getAllAddresses () {
   return Address.find();
 }
+
+export function getAddress (id) {
+  return Address.findById(id);
+}

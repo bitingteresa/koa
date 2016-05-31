@@ -15,4 +15,18 @@ AddressRouter.get('/addresses', async function () {
   }
 });
 
+// GET a single address
+AddressRouter.get('/addresses/:addressId', async function () {
+  const { addressId } = this.params;
+
+  try {
+    const result = await Services.getAddress(addressId);
+
+    this.body = result;
+  } catch (error) {
+    this.status = 400;
+    this.body = 'Not a valid address'
+  }
+});
+
 export default AddressRouter;
