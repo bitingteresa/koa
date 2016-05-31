@@ -47,4 +47,20 @@ UserRouter.patch('/users/:userId', async function () {
   }
 });
 
+// DELETE a single User
+// TODO: need to handle address delete base on count
+UserRouter.del('/users/:userId', async function () {
+  const { userId } = this.params;
+
+  try {
+    const result = await Services.deleteUser(userId);
+
+    this.body = result;
+    this.response.message = 'User was removed'
+  } catch (error) {
+    this.status = 400;
+    this.body = 'There was a problem removing user';
+  }
+});
+
 export default UserRouter;
