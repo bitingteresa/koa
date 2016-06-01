@@ -16,16 +16,15 @@ export function getUser (id) {
   return User.findById(id);
 }
 
+// Need to copy the whole model on the CS to pass in as ctx AND address
 export function updateUser (id, ctx) {
   let user = new User({_id: ObjectId(id)});
   user.set(ctx);
   user.save();
-
-  // TODO: Need to copy the whole model on the CS to pass in as ctx
-
   return user.get();
 }
 
+// DOESN'T DELETE ADDRESS YET
 export async function deleteUser (id) {
   await User.remove({_id: ObjectId(id)});
   return getAllUsers();
@@ -42,8 +41,13 @@ export function getAllAddresses () {
   return Address.find();
 }
 
-export function getAddress (id) {
+export function getAddressById (id) {
   return Address.findById(id);
+}
+
+export async function findAddress (data) {
+  let address = await Address.findOne(data);
+  return address ? address.attributes : '';
 }
 
 export async function deleteAddress (id) {

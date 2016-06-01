@@ -66,7 +66,11 @@ UserRouter.del('/users/:userId', async function () {
 // POST a single user
 UserRouter.post('/users', async function () {
   try {
-    const address = await Services.saveAddress(this.request.body.address);
+    let address = await Services.findAddress(this.request.body.address);
+
+    if (address === '') {
+      address = await Services.saveAddress(this.request.body.address);
+    }
 
     this.request.body.address = address._id;
 

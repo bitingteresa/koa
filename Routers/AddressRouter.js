@@ -15,12 +15,12 @@ AddressRouter.get('/addresses', async function () {
   }
 });
 
-// GET a single address
+// GET a single address by id
 AddressRouter.get('/addresses/:addressId', async function () {
   const { addressId } = this.params;
 
   try {
-    const result = await Services.getAddress(addressId);
+    const result = await Services.getAddressById(addressId);
 
     this.body = result;
   } catch (error) {
