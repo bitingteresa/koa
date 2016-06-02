@@ -30,7 +30,6 @@ UserRouter.get('/users/:userId', async function () {
 });
 
 // PATCH a single user
-// TODO: need to handle the address changes
 UserRouter.patch('/users/:userId', async function () {
   const { userId } = this.params;
 
@@ -48,7 +47,6 @@ UserRouter.patch('/users/:userId', async function () {
 });
 
 // DELETE a single user
-// TODO: need to handle address delete base on count
 UserRouter.del('/users/:userId', async function () {
   const { userId } = this.params;
 
