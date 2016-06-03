@@ -5,7 +5,7 @@ import UserRouter    from './Routers/UserRouter';
 import AddressRouter from './Routers/AddressRouter';
 
 const App = koa();
-const Port = process.env.PORT || 8080;
+const Port = process.env.PORT || 8080
 
 // MIDDLEWARE
 App.use(cors());

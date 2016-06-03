@@ -45,12 +45,18 @@ User's address property is given a a reference to the `_id` to the address colle
 
 ### users
 GET all `https://hello-ss.herokuapp.com/users`
+
 GET single `https://hello-ss.herokuapp.com/users/:userId`
+
 POST single `https://hello-ss.herokuapp.com/users`
+
 PATCH single `https://hello-ss.herokuapp.com/users/:userId`
+
 DELETE single `https://hello-ss.herokuapp.com/users/:userId`
 
 ### addresses
 GET all `https://hello-ss.herokuapp.com/addresses`
+
 GET single `https://hello-ss.herokuapp.com/addresses/:singleId`
+
 DELETE single `https://hello-ss.herokuapp.com/addresses/:singleId`

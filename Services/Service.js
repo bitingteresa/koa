@@ -2,7 +2,7 @@ import mongorito         from 'mongorito';
 import { User, Address } from '../Models';
 import { ObjectId }      from 'mongodb';
 
-const MongoUrl = process.env.MONGO_URI || 'mongodb://localhost:27017/hw';
+const MongoUrl = process.env.MONGODB_URI || 'mongodb://localhost:27017/hw';
 
 mongorito.connect(MongoUrl);
 console.log(`Connected to DB ${MongoUrl}`);
