@@ -30,8 +30,8 @@ UserRouter.get('/users/:userId', async function () {
   }
 });
 
-// PATCH a single user
-UserRouter.patch('/users/:userId', async function () {
+// PUT a single user
+UserRouter.put('/users/:userId', async function () {
   const { userId } = this.params;
 
   try {

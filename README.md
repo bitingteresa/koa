@@ -50,7 +50,7 @@ GET single `https://hello-ss.herokuapp.com/users/:userId`
 
 POST single `https://hello-ss.herokuapp.com/users`
 
-PATCH single `https://hello-ss.herokuapp.com/users/:userId`
+PUT single `https://hello-ss.herokuapp.com/users/:userId`
 
 DELETE single `https://hello-ss.herokuapp.com/users/:userId`
 
