@@ -1,5 +1,6 @@
 import Router from 'koa-router';
 import * as Services from '../Services/Service';
+import * as Utils from '../Utils';
 
 const UserRouter = new Router();
 
@@ -34,11 +35,17 @@ UserRouter.patch('/users/:userId', async function () {
   const { userId } = this.params;
 
   try {
+    if (!Utils.validateObject(this.request.body)) throw 'Invalid format';
+    Utils.dataSelection(this.request.body);
+
+    let address = await Services.saveAddress(this.request.body.address);
+    this.request.body.address = address._id;
+
     const result = await Services.updateUser(
       userId, this.request.body
     );
 
-    this.body = await result;
+    this.body = result;
     this.response.message = 'User was updated Successfully'
   } catch (error) {
     this.status = 400;
@@ -64,6 +71,8 @@ UserRouter.del('/users/:userId', async function () {
 // POST a single user
 UserRouter.post('/users', async function () {
   try {
+    if (!Utils.validateObject(this.request.body)) throw 'Invalid format';
+    Utils.dataSelection(this.request.body);
     let address = await Services.findAddress(this.request.body.address);
 
     if (address === '') {

@@ -24,7 +24,6 @@ export function updateUser (id, ctx) {
   return user.get();
 }
 
-// DOESN'T DELETE ADDRESS YET
 export async function deleteUser (id) {
   await User.remove({_id: ObjectId(id)});
   return getAllUsers();
